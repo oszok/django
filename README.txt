@@ -9,3 +9,9 @@ Podczas przepisywania pliku `product_list.html` wprowadziłem 4 zmiany:
 ## Testy walidacji formularza
 
 ![Błędy walidacji](form_errors.png)
+
+![Błąd 403 CSRF](csrf_error.png)
+
+Atak CSRF polega na skłonieniu zalogowanego użytkownika do otwarcia złośliwej strony, która potajemnie wysyła formularz do innej witryny z wykorzystaniem jego zapamiętanych ciasteczek.
+Django broni przed tym, dołączając do każdego formularza unikalny, losowy token, który zna wyłącznie nasza aplikacja.
+Serwer odrzuca żądania POST bez poprawnego tokena kodem 403 Forbidden, co uniemożliwia obcej stronie podszycie się pod użytkownika.
