@@ -6,6 +6,8 @@ PRODUCTS = [
     {"id": 1, "name": "Laptop", "price": 2999, "category": "laptops", "is_available": True},
     {"id": 2, "name": "Mysz", "price": 49, "category": "accessories", "is_available": False},
     {"id": 3, "name": "Klawiatura", "price": 199, "category": "accessories", "is_available": True},
+    {"id": 4, "name": "Monitor", "price": 899, "category": "monitors", "is_available": True},
+    {"id": 5, "name": "Słuchawki", "price": 149, "category": "accessories", "is_available": False},
 ]
 
 

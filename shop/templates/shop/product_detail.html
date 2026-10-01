@@ -1,7 +1,10 @@
 {% extends "shop/base.html" %}
+
 {% block content %}
 <h1>{{ product.name }}</h1>
+<p>Kategoria: {{ product.category }}</p>
 <p>Cena: {{ product.price }} zł</p>
 <p>Dostępny: {{ product.is_available|yesno:"tak,nie" }}</p>
+
 <a href="{% url 'shop:product_list' %}">Wróć</a>
-{% endblock %}
+{% endblock %}python manage.py runserver

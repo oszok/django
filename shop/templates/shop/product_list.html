@@ -1,0 +1,42 @@
+{% extends "shop/base.html" %}
+{% block title %}Produkty – Sklep 4TP{% endblock %}
+
+{% block content %}
+<h1>Produkty ({{ products|length }})</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Lp.</th>
+            <th>Nazwa</th>
+            <th>Kategoria</th>
+            <th>Cena</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in products %}
+        <!-- Jeśli p.is_available jest False (nie p.is_available), dajemy czerwone tło -->
+        <tr {% if not p.is_available %}style="background-color: #f8d7da;"{% endif %}>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'shop:product_detail' p.id %}">{{ p.name }}</a>
+            </td>
+            <td>{{ p.category }}</td>
+            <td>{{ p.price }} zł</td>
+            <td>
+                {% if p.is_available %}
+                    dostępny
+                {% else %}
+                    <b style="color: #721c24;">brak</b>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Brak produktów.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
