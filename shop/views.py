@@ -41,8 +41,3 @@ def product_add(request):
     return render(request, "shop/product_form.html", {"form": form})
 
 
-
-
-# Biernat
-
-

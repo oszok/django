@@ -5,3 +5,7 @@ Podczas przepisywania pliku `product_list.html` wprowadziłem 4 zmiany:
 4. Zamiana filtra `round(2)` na `floatformat:2`.
 
 Łącznie poprawek: 4.
+
+## Testy walidacji formularza
+
+![Błędy walidacji](form_errors.png)
