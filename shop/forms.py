@@ -17,3 +17,21 @@ class ProductForm(forms.Form):
 class SearchForm(forms.Form):
     q = forms.CharField(label="Szukaj", required=False, max_length=50)
     only_available = forms.BooleanField(label="Tylko dostępne", required=False)
+
+    def clean_name(self):
+        name = self.cleaned_data["name"].strip()
+        # Reguła domeny: nazwa nie może być słowem testowym
+        if name.lower() in {"test", "asdf", "demo", "xxx"}:
+            raise forms.ValidationError("Wpisz prawdziwą nazwę produktu, a nie słowo testowe.")
+        return name
+
+    def clean(self):
+        cleaned_data = super().clean()
+        price = cleaned_data.get("price")
+        category = cleaned_data.get("category")
+
+        # Reguła domeny: Laptop nie może kosztować mniej niż 500 zł
+        if price is not None and category == "laptops" and price < 500:
+            self.add_error("price", "Laptop nie może kosztować mniej niż 500 zł. Sprawdź cenę lub kategorię.")
+
+        return cleaned_data
