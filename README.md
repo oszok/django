@@ -22,3 +22,14 @@ Serwer odrzuca żądania POST bez poprawnego tokena kodem 403 Forbidden, co unie
 W formularzu wyszukiwania użyliśmy metody `GET` i celowo nie dołączyliśmy tagu `{% csrf_token %}`.
 
 Formularze typu `GET` służą wyłącznie do pobierania i filtrowania danych, nie wprowadzając żadnych zmian w bazie danych ani na serwerze (zgodnie z zasadą bezstanowości HTTP). Atak CSRF (Cross-Site Request Forgery) ma na celu wywołanie niepożądanej akcji zmieniającej stan konta użytkownika (np. edycja, usunięcie danych, wykonanie przelewu). Ponieważ zapytanie `GET` jest bezpieczne i czytelne (wszystkie parametry są widoczne bezpośrednio w adresie URL, co pozwala np. na zapisanie linku w zakładkach), token CSRF jest w nim niepotrzebny i niewykorzystywany przez Django.
+
+```text
+shop/
+├── static/
+│   └── shop/
+│       └── style.css
+└── templates/
+    └── shop/
+        ├── base.html
+        ├── product_form.html
+        └── product_list.html
