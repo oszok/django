@@ -1,9 +1,42 @@
 {% extends "shop/base.html" %}
+
 {% block content %}
-<h1>Nowy produkt</h1>
+<h1>Dodaj produkt</h1>
+
 <form method="post">
-<!--    {% csrf_token %}-->
-    {{ form.as_p }}
-    <button>Zapisz</button>
+    {% csrf_token %}
+
+    <!-- 1. Ręczne wyrenderowanie pola 'name' -->
+    <p>
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {% if form.name.errors %}
+            <div class="errorlist">{{ form.name.errors }}</div>
+        {% endif %}
+    </p>
+
+    <!-- 2. Wyrenderowanie pozostałych pól -->
+    <p>
+        {{ form.price.label_tag }}
+        {{ form.price }}
+        {{ form.price.errors }}
+    </p>
+    <p>
+        {{ form.category.label_tag }}
+        {{ form.category }}
+        {{ form.category.errors }}
+    </p>
+    <p>
+        {{ form.is_available.label_tag }}
+        {{ form.is_available }}
+        {{ form.is_available.errors }}
+    </p>
+    <p>
+        {{ form.description.label_tag }}
+        {{ form.description }}
+        {{ form.description.errors }}
+    </p>
+
+    <button type="submit">Zapisz</button>
 </form>
 {% endblock %}

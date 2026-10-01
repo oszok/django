@@ -18,6 +18,16 @@ class SearchForm(forms.Form):
     q = forms.CharField(label="Szukaj", required=False, max_length=50)
     only_available = forms.BooleanField(label="Tylko dostępne", required=False)
 
+class ProductForm(forms.Form):
+    # Dodajemy widget z atrybutem class="wide"
+    name = forms.CharField(
+        label="Nazwa",
+        max_length=100,
+        min_length=3,
+        widget=forms.TextInput(attrs={"class": "wide"})
+    )
+    price = forms.DecimalField(label="Cena", min_value=0.01, max_digits=8, decimal_places=2)
+
     def clean_name(self):
         name = self.cleaned_data["name"].strip()
         # Reguła domeny: nazwa nie może być słowem testowym
